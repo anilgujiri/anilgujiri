@@ -1,0 +1,20 @@
+def func(my_param,**kwargs):
+    ssh = SSHHook(ssh_conn_id=AIRFLOW_CONNECTION_ID)
+    ssh_client = None
+    try:
+        ssh_client = ssh.get_conn()
+        ssh_client.load_system_host_keys()
+        ssh_client.exec_command('sudo service account command')
+		ssh_client.exec_command(my_param)
+    finally:
+        if ssh_client:
+            ssh_client.close()
+			
+
+call_ssh_task = PythonOperator(
+    task_id='call_ssh_task',
+	provide_context=True,
+    python_callable=func,
+	op_kwargs={"my_param":'your command'},
+    dag=dag
+)
