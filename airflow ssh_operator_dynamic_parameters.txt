@@ -1,0 +1,7 @@
+from airflow.models import Variable
+
+
+    your_task_name = SSHOperator(ssh_conn_id='ssh_test_win',
+                            task_id='Copy_files_to_gcs',
+                            command=r'sh -x your_command'+ '{{ Variable.get('Dag_name_variable_name')) }}' +'your_command',
+                            dag=dag)
