@@ -47,6 +47,6 @@ with DAG(dag_id='bhuvitest2',  default_args=default_args) as main_dag:
 
     bhuvitest = PythonOperator(task_id='python_task', python_callable=func,op_kwargs={'tname': 'taskname'},dag = main_dag)
 
-    bhuvitest2 = PythonOperator(task_id='python_task', python_callable=func,op_kwargs={'tname': 'taskname2'},dag = main_dag)
+    bhuvitest2 = PythonOperator(task_id='python_task2',trigger_rule='none_failed', python_callable=func,op_kwargs={'tname': 'taskname2'},dag = main_dag)
 
 bhuvitest >> bhuvitest2
