@@ -23,7 +23,7 @@ default_args = {
 
 lines = []
 
-with open(r'C:\Users\anilgujiri18\Desktop\Files\read.txt') as f:
+with open('read.txt') as f:
     lines = [line.rstrip('\n') for line in f]
 
 
@@ -43,7 +43,7 @@ def func(**kwargs):
     
     t1.execute(dict())
 
-with DAG(dag_id='bhuvitest',  default_args=default_args) as main_dag:
+with DAG(dag_id='bhuvitest2',  default_args=default_args) as main_dag:
 
     bhuvitest = PythonOperator(task_id='python_task', python_callable=func,op_kwargs={'tname': 'taskname'},dag = main_dag)
 
